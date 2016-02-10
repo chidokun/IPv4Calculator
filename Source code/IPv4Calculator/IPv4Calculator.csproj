@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="NetworkAddress.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -64,6 +70,9 @@
     <Compile Include="NetworkMask.cs" />
     <Compile Include="SubnetMask.cs" />
     <Compile Include="WildcastMask.cs" />
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IPv4Calculator_icon.ico" />
+    <None Include="Resources\icon_64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

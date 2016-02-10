@@ -37,7 +37,6 @@
             System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("First Octet Range");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlTitle = new System.Windows.Forms.Panel();
-            this.btnInfo = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -50,10 +49,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbClass = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.picSubnetMask = new System.Windows.Forms.PictureBox();
             this.cmbSubnetMask = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.picIPAddress = new System.Windows.Forms.PictureBox();
             this.txtIPv4Address = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -75,15 +72,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numSubnetBits = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.picSubnetMask = new System.Windows.Forms.PictureBox();
+            this.picIPAddress = new System.Windows.Forms.PictureBox();
+            this.btnInfo = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrefix)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSubnetMask)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIPAddress)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.pnlSubnetBitmap.SuspendLayout();
@@ -91,6 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numHostPerSubnet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberOfSubnets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSubnetBits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSubnetMask)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIPAddress)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTitle
@@ -104,23 +104,6 @@
             this.pnlTitle.Name = "pnlTitle";
             this.pnlTitle.Size = new System.Drawing.Size(857, 38);
             this.pnlTitle.TabIndex = 2;
-            // 
-            // btnInfo
-            // 
-            this.btnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(193)))), ((int)(((byte)(74)))));
-            this.btnInfo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnInfo.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnInfo.FlatAppearance.BorderSize = 0;
-            this.btnInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(119)))), ((int)(((byte)(46)))));
-            this.btnInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(210)))), ((int)(((byte)(136)))));
-            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInfo.ForeColor = System.Drawing.Color.White;
-            this.btnInfo.Image = global::IPv4Calculator.Properties.Resources.icon_info_24;
-            this.btnInfo.Location = new System.Drawing.Point(813, 0);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(44, 38);
-            this.btnInfo.TabIndex = 6;
-            this.btnInfo.UseVisualStyleBackColor = false;
             // 
             // lblTitle
             // 
@@ -261,14 +244,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Subnet Mask";
             // 
-            // picSubnetMask
-            // 
-            this.picSubnetMask.Location = new System.Drawing.Point(198, 26);
-            this.picSubnetMask.Name = "picSubnetMask";
-            this.picSubnetMask.Size = new System.Drawing.Size(20, 20);
-            this.picSubnetMask.TabIndex = 3;
-            this.picSubnetMask.TabStop = false;
-            // 
             // cmbSubnetMask
             // 
             this.cmbSubnetMask.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -291,14 +266,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "IP Address";
-            // 
-            // picIPAddress
-            // 
-            this.picIPAddress.Location = new System.Drawing.Point(198, 26);
-            this.picIPAddress.Name = "picIPAddress";
-            this.picIPAddress.Size = new System.Drawing.Size(20, 20);
-            this.picIPAddress.TabIndex = 1;
-            this.picIPAddress.TabStop = false;
             // 
             // txtIPv4Address
             // 
@@ -534,6 +501,40 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Subnet bits";
             // 
+            // picSubnetMask
+            // 
+            this.picSubnetMask.Location = new System.Drawing.Point(198, 26);
+            this.picSubnetMask.Name = "picSubnetMask";
+            this.picSubnetMask.Size = new System.Drawing.Size(20, 20);
+            this.picSubnetMask.TabIndex = 3;
+            this.picSubnetMask.TabStop = false;
+            // 
+            // picIPAddress
+            // 
+            this.picIPAddress.Location = new System.Drawing.Point(198, 26);
+            this.picIPAddress.Name = "picIPAddress";
+            this.picIPAddress.Size = new System.Drawing.Size(20, 20);
+            this.picIPAddress.TabIndex = 1;
+            this.picIPAddress.TabStop = false;
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(193)))), ((int)(((byte)(74)))));
+            this.btnInfo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnInfo.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnInfo.FlatAppearance.BorderSize = 0;
+            this.btnInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(119)))), ((int)(((byte)(46)))));
+            this.btnInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(210)))), ((int)(((byte)(136)))));
+            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInfo.ForeColor = System.Drawing.Color.White;
+            this.btnInfo.Image = global::IPv4Calculator.Properties.Resources.icon_info_24;
+            this.btnInfo.Location = new System.Drawing.Point(813, 0);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(44, 38);
+            this.btnInfo.TabIndex = 6;
+            this.btnInfo.UseVisualStyleBackColor = false;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -557,10 +558,8 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrefix)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picSubnetMask)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIPAddress)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.pnlSubnetBitmap.ResumeLayout(false);
@@ -570,6 +569,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numHostPerSubnet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberOfSubnets)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSubnetBits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSubnetMask)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIPAddress)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -118,13 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icon_info_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_info_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_warning_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_warning_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_ok_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_ok_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_warning_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_warning_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_info_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_info_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>160210</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>1.0</value>
   </data>
 </root>

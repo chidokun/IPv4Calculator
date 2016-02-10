@@ -359,6 +359,14 @@ namespace IPv4Calculator
         {
             UpdateSubnetMask();
         }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            Form about = new frmAbout();
+            about.ShowDialog();
+        }
         #endregion
+
+
     }
 }
