@@ -279,7 +279,7 @@ namespace IPv4Calculator
         {
             StringBuilder binNetworkIDAddr = new StringBuilder(ToBinaryString());
 
-            for (int i = SubnetMask.Prefix-1; i < 32; i++)
+            for (int i = SubnetMask.Prefix; i < 32; i++)
                 binNetworkIDAddr[i] = '0';
 
             IPv4Address networkIDAddr = new IPv4Address(IPv4Address.ToOctetFromBinaryString(binNetworkIDAddr.ToString()),

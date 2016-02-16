@@ -222,7 +222,7 @@ namespace IPv4Calculator
 
         public void UpdateHostPerSubnet()
         {
-            numSubnetBits.Value = 32 - (decimal)Math.Log((double)numHostPerSubnet.Value, 2) - 2 - numPrefix.Value;
+            numSubnetBits.Value = 32 - (decimal)RoundUp(Math.Log((double)numHostPerSubnet.Value + 2, 2)) - numPrefix.Value;
             numNumberOfSubnets.Value = (decimal)Math.Pow(2, (double)numSubnetBits.Value);
         }
 
