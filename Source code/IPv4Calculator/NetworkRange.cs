@@ -13,7 +13,7 @@ namespace IPv4Calculator
     /// </summary>
     public class NetworkRange
     {
-        private IPv4Address _networkAddress;
+        private IPv4Address _networkIDAddress;
 
         private IPv4Address _broadcastAddress;
 
@@ -27,10 +27,10 @@ namespace IPv4Calculator
         /// <summary>
         /// Gets or sets network address as known as Network ID.
         /// </summary>
-        public IPv4Address NetworkAddress
+        public IPv4Address NetworkIDAddress
         {
-            get { return _networkAddress; }
-            set { _networkAddress = value; }
+            get { return _networkIDAddress; }
+            set { _networkIDAddress = value; }
         }
 
         /// <summary>
@@ -82,33 +82,33 @@ namespace IPv4Calculator
             switch (_class)
             {
                 case IPv4Class.A:
-                    _networkAddress = new IPv4Address(1, 0, 0, 0);
+                    _networkIDAddress = new IPv4Address(1, 0, 0, 0);
                     _broadcastAddress = new IPv4Address(127, 255, 255, 255);
-                    _prefix = _networkAddress.SubnetMask.Prefix;
+                    _prefix = _networkIDAddress.SubnetMask.Prefix;
                     _subnetBit = 0;
                     break;
                 case IPv4Class.B:
-                    _networkAddress = new IPv4Address(128, 0, 0, 0);
+                    _networkIDAddress = new IPv4Address(128, 0, 0, 0);
                     _broadcastAddress = new IPv4Address(191, 255, 255, 255);
-                    _prefix = _networkAddress.SubnetMask.Prefix;
+                    _prefix = _networkIDAddress.SubnetMask.Prefix;
                     _subnetBit = 0;
                     break;
                 case IPv4Class.C:
-                    _networkAddress = new IPv4Address(192, 0, 0, 0);
+                    _networkIDAddress = new IPv4Address(192, 0, 0, 0);
                     _broadcastAddress = new IPv4Address(223, 255, 255, 255);
-                    _prefix = _networkAddress.SubnetMask.Prefix;
+                    _prefix = _networkIDAddress.SubnetMask.Prefix;
                     _subnetBit = 0;
                     break;
                 case IPv4Class.D:
-                    _networkAddress = new IPv4Address(224, 0, 0, 0);
+                    _networkIDAddress = new IPv4Address(224, 0, 0, 0);
                     _broadcastAddress = new IPv4Address(239, 255, 255, 255);
-                    _prefix = _networkAddress.SubnetMask.Prefix;
+                    _prefix = _networkIDAddress.SubnetMask.Prefix;
                     _subnetBit = 0;
                     break;
                 case IPv4Class.E:
-                    _networkAddress = new IPv4Address(240, 0, 0, 0);
+                    _networkIDAddress = new IPv4Address(240, 0, 0, 0);
                     _broadcastAddress = new IPv4Address(255, 255, 255, 255);
-                    _prefix = _networkAddress.SubnetMask.Prefix;
+                    _prefix = _networkIDAddress.SubnetMask.Prefix;
                     _subnetBit = 0;
                     break;
                 default:
@@ -126,7 +126,7 @@ namespace IPv4Calculator
         /// <param name="ipClass">Class of IPv4 address.</param>
         public NetworkRange(IPv4Address networkAddr, IPv4Address broadcastAddr, int prefix, int subnetBit, IPv4Class ipClass)
         {
-            NetworkAddress = networkAddr;
+            NetworkIDAddress = networkAddr;
             BroadcastAddress = broadcastAddr;
             Prefix = prefix;
             SubnetBit = subnetBit;
@@ -141,10 +141,10 @@ namespace IPv4Calculator
         /// <param name="subnetBit">Class of IPv4 address.</param>
         public NetworkRange(IPv4Address networkAddr, int prefix, int subnetBit)
         {
-            NetworkAddress = networkAddr;
+            NetworkIDAddress = networkAddr;
             Prefix = prefix;
             SubnetBit = subnetBit;
-            Class = NetworkAddress.Class;
+            Class = NetworkIDAddress.Class;
             BroadcastAddress = ToBroadcastAddress();
         }
 
@@ -155,7 +155,7 @@ namespace IPv4Calculator
         /// <returns></returns>
         private IPv4Address ToBroadcastAddress()
         {
-            StringBuilder binNetworkAddr = new StringBuilder(_networkAddress.ToBinaryString());
+            StringBuilder binNetworkAddr = new StringBuilder(_networkIDAddress.ToBinaryString());
 
             for (int i = _prefix + _subnetBit; i < 32; i++)
                 binNetworkAddr[i] = '1';

@@ -163,6 +163,7 @@ namespace IPv4Calculator
             lvwProperties.Items[4].SubItems[1].Text = ipAddress.SubnetMask.Prefix.ToString(); //Prefix
             lvwProperties.Items[5].SubItems[1].Text = ToClass(ipAddress.Class); //Class
             lvwProperties.Items[6].SubItems[1].Text = ToFirstOctetRange(ipAddress.Class); //First Octet Range
+            lvwProperties.Items[7].SubItems[1].Text = ipAddress.NetworkIDAddress().ToString(); //Network ID Address
         }
 
         private static string ToClass(IPv4Class ipClass)
@@ -242,7 +243,7 @@ namespace IPv4Calculator
             int numberHost = (int)numHostPerSubnet.Value;
 
             NetworkRange subnet;
-            IPv4Address networkID = ipAddress;
+            IPv4Address networkID = ipAddress.NetworkIDAddress();
 
             lvwSubnetting.Items.Clear();
 
@@ -252,9 +253,9 @@ namespace IPv4Calculator
 
                 subnet = new NetworkRange(networkID, ipAddress.SubnetMask.Prefix, subnetBit);
 
-                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkAddress.ToString());
+                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkIDAddress.ToString());
                 lvwSubnetting.Items[i - 1].SubItems.Add((subnet.Prefix + subnet.SubnetBit).ToString());
-                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkAddress.NextAddress().ToString());
+                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkIDAddress.NextAddress().ToString());
                 lvwSubnetting.Items[i - 1].SubItems.Add(subnet.BroadcastAddress.PreviousAddress().ToString());
                 lvwSubnetting.Items[i - 1].SubItems.Add(subnet.BroadcastAddress.ToString());
 
@@ -263,7 +264,6 @@ namespace IPv4Calculator
 
             UpdateSubnetBitmap();
         }
-
         #endregion
 
         #region Subnet Bitmap
@@ -298,7 +298,7 @@ namespace IPv4Calculator
         {
             if (isValidIPAddress && isValidSubnetMask)
                 lblSubnetBitmap.Text = ToSubnetBitmap(ipAddress.ToBinaryString(),
-                                       ipAddress.SubnetMask.Prefix, (int)numSubnetBits.Value, ipAddress.Class);
+                                ipAddress.SubnetMask.Prefix, (int)numSubnetBits.Value, ipAddress.Class);
         }
 
         #endregion
@@ -366,7 +366,6 @@ namespace IPv4Calculator
             about.ShowDialog();
         }
         #endregion
-
 
     }
 }

@@ -4,6 +4,8 @@
 /// 
 /// This is free software and I hope it will be useful.
 
+using System.Text;
+
 namespace IPv4Calculator
 {
     /// <summary>
@@ -271,6 +273,19 @@ namespace IPv4Calculator
             }
 
             return nextAddr;
+        }
+
+        public IPv4Address NetworkIDAddress()
+        {
+            StringBuilder binNetworkIDAddr = new StringBuilder(ToBinaryString());
+
+            for (int i = SubnetMask.Prefix-1; i < 32; i++)
+                binNetworkIDAddr[i] = '0';
+
+            IPv4Address networkIDAddr = new IPv4Address(IPv4Address.ToOctetFromBinaryString(binNetworkIDAddr.ToString()),
+                                                        SubnetMask, _class);
+
+            return networkIDAddr;
         }
     }
 }
