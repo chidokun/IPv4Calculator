@@ -76,6 +76,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numSubnetBits = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -327,11 +328,12 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.progressBar);
             this.panel5.Controls.Add(this.lvwSubnetting);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 61);
+            this.panel5.Location = new System.Drawing.Point(0, 58);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(594, 348);
+            this.panel5.Size = new System.Drawing.Size(594, 351);
             this.panel5.TabIndex = 2;
             // 
             // lvwSubnetting
@@ -349,9 +351,9 @@
             this.lvwSubnetting.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lvwSubnetting.FullRowSelect = true;
             this.lvwSubnetting.GridLines = true;
-            this.lvwSubnetting.Location = new System.Drawing.Point(6, 6);
+            this.lvwSubnetting.Location = new System.Drawing.Point(6, 8);
             this.lvwSubnetting.Name = "lvwSubnetting";
-            this.lvwSubnetting.Size = new System.Drawing.Size(572, 342);
+            this.lvwSubnetting.Size = new System.Drawing.Size(572, 341);
             this.lvwSubnetting.TabIndex = 0;
             this.lvwSubnetting.UseCompatibleStateImageBehavior = false;
             this.lvwSubnetting.View = System.Windows.Forms.View.Details;
@@ -432,7 +434,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(594, 61);
+            this.panel3.Size = new System.Drawing.Size(594, 58);
             this.panel3.TabIndex = 0;
             // 
             // numHostPerSubnet
@@ -537,6 +539,16 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Subnet bits";
             // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(6, 1);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(572, 8);
+            this.progressBar.TabIndex = 1;
+            this.progressBar.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -618,6 +630,7 @@
         private System.Windows.Forms.PictureBox picSubnetMask;
         private System.Windows.Forms.PictureBox picIPAddress;
         private System.Windows.Forms.Label lblSubnetBitmap;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 

@@ -13,23 +13,14 @@ namespace IPv4Calculator
     /// </summary>
     public class Octet
     {
-        private string _binaryValue;
         private int _decimalValue;
 
         /// <summary>
-        /// Represents binary value of octet.
+        /// Gets binary value of octet.
         /// </summary>
         public string Binary
         {
-            get { return _binaryValue; }
-            set
-            {
-                if (!IsValid(value))
-                    throw new Exception();
-                else
-                    _binaryValue = value;
-                _decimalValue = ToDecimal(_binaryValue);
-            }
+            get { return ToBinary(Decimal); }          
         }
 
         /// <summary>
@@ -44,7 +35,6 @@ namespace IPv4Calculator
                     throw new ArgumentOutOfRangeException("Decimal value must be between 0 and 32.");
                 else
                     _decimalValue = value;
-                _binaryValue = ToBinary(_decimalValue);
             }
         }
 
@@ -63,7 +53,7 @@ namespace IPv4Calculator
         /// <param name="octet">A binary string less than 9 characters.</param>
         public Octet(string octet)
         {
-            Binary = octet;
+            Decimal = ToDecimal(octet);
         }
 
         /// <summary>
@@ -136,7 +126,7 @@ namespace IPv4Calculator
         /// <returns></returns>
         public bool IsValid()
         {
-            return IsValid(Decimal) && IsValid(Binary);
+            return IsValid(Decimal);
         }
     }
 }

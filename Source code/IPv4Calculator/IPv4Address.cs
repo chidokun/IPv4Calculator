@@ -4,6 +4,7 @@
 /// 
 /// This is free software and I hope it will be useful.
 
+using System;
 using System.Text;
 
 namespace IPv4Calculator
@@ -32,6 +33,8 @@ namespace IPv4Calculator
                 Octet = ToOctet(value);
                 _mask = new NetworkMask(_octet);
                 _class = ToNetworkClass(_octet);
+                if (!IsValid())
+                    throw new Exception();
             }
         }
 
@@ -286,6 +289,14 @@ namespace IPv4Calculator
                                                         SubnetMask, _class);
 
             return networkIDAddr;
+        }
+
+        public override bool IsValid()
+        {
+            if (Octet[0].Decimal != 0)
+                return base.IsValid();
+            else
+                return false;
         }
     }
 }

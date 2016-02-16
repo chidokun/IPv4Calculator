@@ -6,6 +6,7 @@
 
 using System;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using IPv4Calculator.Properties;
 
@@ -207,6 +208,8 @@ namespace IPv4Calculator
         #endregion
 
         #region Subnetting
+        private bool isSubnetting = true; //Determines button is Subnetting or Cancel.
+        private Thread subnettingThread;
 
         public void UpdateSubnetBit()
         {
@@ -238,29 +241,51 @@ namespace IPv4Calculator
 
         public void Subnetting()
         {
+            //Declare variables
             int subnetBit = (int)numSubnetBits.Value;
             int numberSubnet = (int)numNumberOfSubnets.Value;
             int numberHost = (int)numHostPerSubnet.Value;
 
+            //Initialize a network range
             NetworkRange subnet;
             IPv4Address networkID = ipAddress.NetworkIDAddress();
 
-            lvwSubnetting.Items.Clear();
+            //Prepare for listview to show result
+            lvwSubnetting.Invoke((MethodInvoker)delegate 
+            {
+                lvwSubnetting.Items.Clear();
+                lvwSubnetting.BeginUpdate();
+            });
 
             for (int i = 1; i <= numberSubnet; i++)
             {
-                lvwSubnetting.Items.Add(i.ToString());
-
                 subnet = new NetworkRange(networkID, ipAddress.SubnetMask.Prefix, subnetBit);
 
-                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkIDAddress.ToString());
-                lvwSubnetting.Items[i - 1].SubItems.Add((subnet.Prefix + subnet.SubnetBit).ToString());
-                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkIDAddress.NextAddress().ToString());
-                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.BroadcastAddress.PreviousAddress().ToString());
-                lvwSubnetting.Items[i - 1].SubItems.Add(subnet.BroadcastAddress.ToString());
+                lvwSubnetting.Invoke((MethodInvoker)delegate
+                {
+                    lvwSubnetting.Items.Add(i.ToString());
+                    lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkIDAddress.ToString());
+                    lvwSubnetting.Items[i - 1].SubItems.Add((subnet.Prefix + subnet.SubnetBit).ToString());
+                    lvwSubnetting.Items[i - 1].SubItems.Add(subnet.NetworkIDAddress.NextAddress().ToString());
+                    lvwSubnetting.Items[i - 1].SubItems.Add(subnet.BroadcastAddress.PreviousAddress().ToString());
+                    lvwSubnetting.Items[i - 1].SubItems.Add(subnet.BroadcastAddress.ToString());
 
+                    progressBar.Value = i * 100 / numberSubnet;
+                });
+                
                 networkID = subnet.BroadcastAddress.NextAddress();
             }
+
+            //Update ListView and reset value of button and progressbar.
+            lvwSubnetting.Invoke((MethodInvoker)delegate 
+            {
+                lvwSubnetting.EndUpdate();
+                progressBar.Visible = false;
+                progressBar.Value = progressBar.Minimum;
+
+                btnSubnetting.Text = "Subnetting";
+                isSubnetting = true;
+            });
 
             UpdateSubnetBitmap();
         }
@@ -352,7 +377,33 @@ namespace IPv4Calculator
 
         private void btnSubnetting_Click(object sender, EventArgs e)
         {
-            Subnetting();
+            if (isSubnetting)
+            {
+                //Preparations for UI
+                if (numNumberOfSubnets.Value > 2000)
+                    progressBar.Visible = true;
+                btnSubnetting.Text = "Cancel";
+                isSubnetting = false;
+
+                //Start thread
+                subnettingThread = new Thread(new ThreadStart(Subnetting));
+                subnettingThread.SetApartmentState(ApartmentState.MTA);
+                subnettingThread.IsBackground = true;
+                subnettingThread.Start();
+            }
+            else
+            {
+                //Abort thread
+                subnettingThread.Abort();
+
+                //Update UI
+                btnSubnetting.Text = "Subnetting";
+                isSubnetting = true;
+                lvwSubnetting.EndUpdate();
+                progressBar.Visible = false;
+                progressBar.Value = progressBar.Minimum;
+            }
+            
         }
 
         private void cmbSubnetMask_SelectedIndexChanged(object sender, EventArgs e)
