@@ -247,8 +247,8 @@ namespace IPv4Calculator
             int numberHost = (int)numHostPerSubnet.Value;
 
             //Initialize a network range
-            NetworkRange subnet;
             IPv4Address networkID = ipAddress.NetworkIDAddress();
+            NetworkRange subnet = new NetworkRange(networkID, ipAddress.SubnetMask.Prefix, subnetBit);
 
             //Prepare for listview to show result
             lvwSubnetting.Invoke((MethodInvoker)delegate 
@@ -258,9 +258,7 @@ namespace IPv4Calculator
             });
 
             for (int i = 1; i <= numberSubnet; i++)
-            {
-                subnet = new NetworkRange(networkID, ipAddress.SubnetMask.Prefix, subnetBit);
-
+            {              
                 lvwSubnetting.Invoke((MethodInvoker)delegate
                 {
                     lvwSubnetting.Items.Add(i.ToString());
@@ -272,8 +270,8 @@ namespace IPv4Calculator
 
                     progressBar.Value = i * 100 / numberSubnet;
                 });
-                
-                networkID = subnet.BroadcastAddress.NextAddress();
+
+                subnet.NetworkIDAddress = subnet.BroadcastAddress.NextAddress();                
             }
 
             //Update ListView and reset value of button and progressbar.
@@ -380,11 +378,11 @@ namespace IPv4Calculator
             if (isSubnetting)
             {
                 //Preparations for UI
-                if (numNumberOfSubnets.Value > 2000)
-                    progressBar.Visible = true;
                 btnSubnetting.Text = "Cancel";
                 isSubnetting = false;
-
+                if (numNumberOfSubnets.Value > 2000)
+                    progressBar.Visible = true;
+                
                 //Start thread
                 subnettingThread = new Thread(new ThreadStart(Subnetting));
                 subnettingThread.SetApartmentState(ApartmentState.MTA);
@@ -402,8 +400,7 @@ namespace IPv4Calculator
                 lvwSubnetting.EndUpdate();
                 progressBar.Visible = false;
                 progressBar.Value = progressBar.Minimum;
-            }
-            
+            }          
         }
 
         private void cmbSubnetMask_SelectedIndexChanged(object sender, EventArgs e)

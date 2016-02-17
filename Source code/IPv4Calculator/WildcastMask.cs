@@ -24,8 +24,7 @@ namespace IPv4Calculator
 
             return subnet;
         }
-
-        
+       
         public override bool IsValid()
         {
             byte[] temp = { 255, 254, 252, 248, 240, 224, 192, 128, 0 };

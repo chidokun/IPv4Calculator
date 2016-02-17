@@ -14,9 +14,12 @@ namespace IPv4Calculator
     /// </summary>
     public enum IPv4Class { A, B, C, D, E }
 
+    /// <summary>
+    /// Represents IPv4 addresses.
+    /// </summary>
     public class IPv4Address : NetworkAddress
     {
-        private NetworkMask _mask = new NetworkMask();
+        private NetworkMask _mask; 
 
         private IPv4Class _class;
 

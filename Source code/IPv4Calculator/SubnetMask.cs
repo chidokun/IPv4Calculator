@@ -175,7 +175,7 @@ namespace IPv4Calculator
         /// Checks if current instance of subnet mask is valid.
         /// </summary>
         /// <returns></returns>
-        public override bool IsValid() //còn sai
+        public override bool IsValid()
         {
             byte[] temp = { 255, 254, 252, 248, 240, 224, 192, 128, 0 };
             bool isValid = true;
